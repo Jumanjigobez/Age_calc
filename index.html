@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="icon" type="image/png" sizes="32x32" href="images/icon-arrow.svg">
+  <title>Jumanji | Age calculator app </title>
+  <link rel="stylesheet" href="style/style.css">
+  <script src="script/script.js" defer></script>
+</head>
+<body>
+  <main>
+    <div id="container">
+      <div class="part_1">
+          <div class="input_group">
+            <label for="date">day</label>
+            <input type="number" min="1" max="31" class="date_input" id="date" placeholder="DD">
+            <small class="error"></small>
+          </div>
+
+          <div class="input_group">
+            <label for="month">month</label>
+            <input type="number" min="1" max="12" class="month_input" id="month" placeholder="MM">
+            <small class="error"></small>
+          </div>
+
+          <div class="input_group">
+            <label for="year">year</label>
+            <input type="number" min="1500" max="3000" class="year_input" id="year" placeholder="YYYY">
+            <small class="error"></small>
+          </div>
+      </div>
+
+      <div class="part_2">
+        <button class="btn" onclick="calculateAge()"><img src="images/icon-arrow.svg" alt="icon-arrow calculate age button"></button>
+      </div>
+
+      <div class="part_3">
+        <ul>
+          <li><span class="year_ans">--</span>years</li>
+          <li><span class="month_ans">--</span>months</li>
+          <li><span class="day_ans">--</span>days</li>
+        </ul>
+      </div>
+
+      <div class="coder_part">
+        <small>Coded By <a href="http://jumanjigobez.github.io/personal_portfolio/" target="_blank">Jumanji</a></small>
+      </div>
+    </div>
+  </main>
+ 
+</body>
+</html>
