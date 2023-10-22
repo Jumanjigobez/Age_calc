@@ -17,8 +17,8 @@ var day_ans = elem(".day_ans"),//Place for Result for date
 
 const calculateAge = () =>{
     let user_inputs = {
-        day: {element: elem("input#date"), min: 1, max: 31},
-        month: {element: elem("input#month"), min: 1, max: 12},
+        day: {element: elem("input#date"), min: 1, max: 31, valid: current_day},
+        month: {element: elem("input#month"), min: 1, max: 12, valid: current_month},
         year: {element: elem("input#year"), min: 1800, max: current_year}
     };
 
@@ -30,7 +30,8 @@ const calculateAge = () =>{
     Object.keys(user_inputs).forEach((key, index) => {
         let input = user_inputs[key].element,
             min = user_inputs[key].min,
-            max = user_inputs[key].max;
+            max = user_inputs[key].max,
+            valid = user_inputs[key].valid;//Prevent negative age calculations
 
         if(input.value == ""){
             input.style.border = "1px solid var(--Light-red)";
@@ -41,7 +42,13 @@ const calculateAge = () =>{
             input.style.border = "1px solid var(--Light-red)";
             errors[index].innerText = `Must be ${min} - ${max}`;
             value_set[index] = false;
-        } else {
+
+        } else if(input.value > valid){//Making sure the input is not exceeding current date
+            input.style.border = "1px solid var(--Light-red)";
+            errors[index].innerText = `Must not exceed ${valid}`;
+            value_set[index] = false;
+        }
+        else {
             input.style.border = "1px solid var(--Light-grey)";
             errors[index].innerText = "";
             result[index] = [current_day, current_month, current_year][index] - input.value;
