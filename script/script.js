@@ -43,7 +43,7 @@ const calculateAge = () =>{
             errors[index].innerText = `Must be ${min} - ${max}`;
             value_set[index] = false;
 
-        } else if(input.value > valid){//Making sure the input is not exceeding current date
+        } else if(input.value > valid && user_inputs.year.element.value==current_year){//Making sure the input is not exceeding current date
             input.style.border = "1px solid var(--Light-red)";
             errors[index].innerText = `Must not exceed ${valid}`;
             value_set[index] = false;
@@ -51,8 +51,17 @@ const calculateAge = () =>{
         else {
             input.style.border = "1px solid var(--Light-grey)";
             errors[index].innerText = "";
-            result[index] = [current_day, current_month, current_year][index] - input.value;
             value_set[index] = true;
+            
+            if(user_inputs.day.element.value > current_day || user_inputs.month.element.value > current_month){
+                result[0] = user_inputs.day.element.value;//Just place the user input as the result if it exceeds current date
+                result[1] = user_inputs.month.element.value;
+                result[2] = current_year - user_inputs.year.element.value;
+            }else{
+                result[index] = [current_day, current_month, current_year][index] - input.value;
+            }
+           
+            // result[index] = [current_day, current_month, current_year][index] - input.value;
         }
     });
     //All the fields are set
